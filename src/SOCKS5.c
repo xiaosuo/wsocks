@@ -72,7 +72,7 @@ static int socks5_connect(wsocks_ctx_t *wc, const struct sockaddr *serv_addr,
 			goto err;
 		dprintf("send USER and PASSWORD\n");
 		slen = wp->auth_len;
-		ptr = wp->auth;
+		ptr = (unsigned char*)wp->auth;
 		while(slen > 0){
 			retval = send_ni(wc->fd, ptr, slen, 0);
 			if(retval <= 0){

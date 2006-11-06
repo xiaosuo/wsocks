@@ -138,5 +138,5 @@ const char* base64_decode(const char *str, int length, int *retlen)
 		*retlen = reslen;
 	}
 	
-	return retval;
+	return (const char*)retval;
 }

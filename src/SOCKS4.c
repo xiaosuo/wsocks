@@ -43,10 +43,10 @@ static int socks4_connect(wsocks_ctx_t *wc, const struct sockaddr *serv_addr,
 	*(u_int16_t*)&buf[2] = serv_addr_in->sin_port;
 	*(u_int32_t*)&buf[4] = serv_addr_in->sin_addr.s_addr;
 	if (wp->auth) {
-		strncpy(&buf[8], wp->auth, sizeof(buf) - 8);
+		strncpy((char*)&buf[8], wp->auth, sizeof(buf) - 8);
 		buf[sizeof(buf) - 1] = '\0';
 	}
-	slen = 8 + strlen(&buf[8]);
+	slen = 8 + strlen((const char*)&buf[8]);
 	ptr = buf;
 	while(slen > 0){
 		retval = send_ni(wc->fd, ptr, slen, 0);
