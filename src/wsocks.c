@@ -55,8 +55,7 @@ static void __wsocks_cleanup_lock(void *arg)
 	do{ \
 		pthread_cleanup_push(__wsocks_cleanup_lock, \
 			&__wsocks_ctx_mutex) \
-		if(pthread_mutex_lock(&__wsocks_ctx_mutex) != 0) \
-			abort();
+		pthread_mutex_lock(&__wsocks_ctx_mutex)
 #define WSOCKS_CTX_UNLOCK() \
 		pthread_cleanup_pop(1); \
 	}while(0)
