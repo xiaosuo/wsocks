@@ -341,9 +341,7 @@ int socket(int domain, int type, int protocol)
 	wcm = malloc(sizeof(*wcm));
 	if(!wcm){
 		errno = ENOMEM;
-		WSOCKS_CTX_LOCK();
 		wsocks_ctx_free(wc);
-		WSOCKS_CTX_UNLOCK();
 		return -1;
 	}
 	wcm->fd = retval;
