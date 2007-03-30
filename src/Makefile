@@ -15,7 +15,7 @@ all: config libwsocks.so service.so address.so any.so BYPASS.so \
 .PHONY: strip clean uninstall
 
 config:
-	printf "#ifndef _CONFIG_H_ \n\
+	@printf "#ifndef _CONFIG_H_ \n\
 		#define _CONFIG_H_ \n\
 		#define WSOCKS_PREFIX \"$(WSOCKS_PREFIX)\" \n\
 		#endif\n" > config.h
