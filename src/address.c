@@ -129,7 +129,7 @@ err:
 /* just like snprintf */
 int snprint_address(char *str, size_t size, address *addr)
 {
-	int len = 0;
+	int len = 0, retval;
 	char buf[INET_ADDRSTRLEN];
 	u_int32_t ip;
 	socklen_t buflen = sizeof(buf);
@@ -148,12 +148,17 @@ int snprint_address(char *str, size_t size, address *addr)
 		if(!inet_ntop(AF_INET, &ip, buf, buflen))
 			return -1;
 		len = snprintf(str, size, "%s-", buf);
+		if(len < 0 || len >= size)
+			return -1;
 		str += len;
 		size -= len;
 		ip = htonl(addr->in.range.end);
 		if(!inet_ntop(AF_INET, &ip, buf, buflen))
 			return -1;
-		len += snprintf(str, size, "%s", buf);
+		retval = snprintf(str, size, "%s", buf);
+		if(retval < 0 || retval >= size)
+			return -1;
+		len += retval;
 		break;
 	case ADDR_NETWORK:
 		ip = htonl(addr->in.network.ip);
