@@ -18,28 +18,28 @@ wsocks: main.c
 
 libwsocks.so: misc.o list.o base64.o url.o \
 			acl.o acl_cond.o acl_act.o acl_rule.o wsocks.o
-	$(LD) -o $@ -shared -ldl -lpthread --version-script symver.script $^
+	$(LD) $(LDFLAGS) -o $@ -shared -ldl -lpthread --version-script symver.script $^
 
 address.so: misc.o address.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 service.so: service.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 any.so: any.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 HTTP.so: misc.o url.o base64.o HTTP.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 BYPASS.so: BYPASS.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 SOCKS4.so: misc.o url.o SOCKS4.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 SOCKS5.so: misc.o url.o SOCKS5.o
-	$(LD) -o $@ -shared $^
+	$(LD) $(LDFLAGS) -o $@ -shared $^
 
 install: all
 	install -d $(WSOCKS_LIB_PATH)
