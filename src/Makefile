@@ -13,8 +13,8 @@ all: libwsocks.so service.so address.so any.so BYPASS.so \
 
 .PHONY: strip clean uninstall
 
-wsocks: main.c
-	$(CC) -o $@ $^
+wsocks: main.o
+	$(CC) $(LDFLAGS) -o $@ $^
 
 libwsocks.so: misc.o list.o base64.o url.o \
 			acl.o acl_cond.o acl_act.o acl_rule.o wsocks.o
