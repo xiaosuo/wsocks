@@ -16,6 +16,8 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 #ifndef _CONFIG_H_ 
-	#define _CONFIG_H_ 
-	#define WSOCKS_PREFIX "/usr/local" 
-	#endif
+#define _CONFIG_H_ 
+#ifndef WSOCKS_PREFIX
+#define WSOCKS_PREFIX "/usr/local"
+#endif
+#endif
