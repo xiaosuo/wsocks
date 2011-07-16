@@ -51,7 +51,7 @@ acl_cond_module_t* request_acl_cond_module(
 
 	if(len >= sizeof(name))
 		return NULL;
-	snprintf(name, len + 1, ptr);
+	snprintf(name, len + 1, "%s", ptr);
 	 /* find it in the cond_path */
 	list_for_each(i, &acl->cond_path){
 		snprintf(path, sizeof(path), "%s/%s.so",
